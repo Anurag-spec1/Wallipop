@@ -63,6 +63,11 @@ class Signup_in : AppCompatActivity() {
         binding.loginRedirect.setOnClickListener{
             val loginintent = Intent(this, Login::class.java)
             startActivity(loginintent)
+            this.finish()
         }
+
+    }
+    override fun onBackPressed() {
+        finishAffinity()
     }
 }

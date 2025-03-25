@@ -52,10 +52,11 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
     implementation ("com.facebook.shimmer:shimmer:0.5.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.squareup.picasso:picasso:2.8")
     implementation("com.github.qamarelsafadi:CurvedBottomNavigation:0.1.3")
 

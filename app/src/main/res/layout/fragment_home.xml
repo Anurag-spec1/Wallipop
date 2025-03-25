@@ -19,19 +19,19 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="WallPapers"
-            android:textColor="#FFB400"
+            android:textColor="#00FFE2"
             android:textSize="25sp"
             android:textStyle="bold" />
 
         <carbon.widget.ImageView
+            android:id="@+id/sign_out"
             android:layout_width="40dp"
             android:layout_height="30dp"
-            android:src="@drawable/logout_new"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
-            app:carbon_tint="@color/dakred"
-            android:id="@+id/sign_out"/>
+            android:src="@drawable/logout_new"
+            app:carbon_tint="#4300FB" />
 
     </RelativeLayout>
 

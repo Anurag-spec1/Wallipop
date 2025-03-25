@@ -1,6 +1,7 @@
 package com.example.wallipop
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +26,13 @@ class FavoriteAdapter(private val context: Context,private val photlst : List<Us
         val photo = photlst[position]
 
         Glide.with(context).load(photo.imgurl).into(holder.imageview)
+        holder.imageview.setOnClickListener{
+            val int = Intent(context, favoriteshow::class.java)
+            int.putExtra("power",photo.imgurl)
+            context.startActivity(int)
+        }
     }
+
 
     override fun getItemCount(): Int {
         return photlst.size

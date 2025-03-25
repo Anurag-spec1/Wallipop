@@ -39,7 +39,6 @@ class HomeFragment : Fragment() {
     private var currentPage = 1
     private var isLoading = false
     private var isLastPage = false
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,6 +59,7 @@ class HomeFragment : Fragment() {
         signOutButton.setOnClickListener {
             signOutUser()
         }
+
 
         // Fetch initial images
         getImages()
@@ -175,8 +175,7 @@ class HomeFragment : Fragment() {
         val intent = Intent(requireContext(), Login::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
-
-        requireActivity().finish()
+            requireActivity().finishAffinity()
     }
 }
 

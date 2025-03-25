@@ -10,10 +10,14 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_launcher_background"
         android:scaleType="centerCrop"
         android:id="@+id/showimg"/>
 
+    <androidx.viewpager2.widget.ViewPager2
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
     <carbon.widget.TextView

@@ -47,11 +47,18 @@ class ImageAdapter(private val context: Context, private val photoList: MutableL
         // Use Glide to load the image from the URL
         Glide.with(context).load(photo.urls.regular).into(holder.img1)
 
-        holder.img1.setOnClickListener{
+//        holder.img1.setOnClickListener{
+//            val intent = Intent(it.context, showimg::class.java)
+//            intent.putExtra("key", photoList[position].urls.regular)
+//            it.context.startActivity(intent)
+//        }
+        holder.img1.setOnClickListener {
             val intent = Intent(it.context, showimg::class.java)
-            intent.putExtra("key", photoList[position].urls.regular)
+            intent.putStringArrayListExtra("imageList", ArrayList(photoList.map { photo -> photo.urls.regular }))
+            intent.putExtra("position", position) // Pass clicked image position
             it.context.startActivity(intent)
         }
+
     }
 
     override fun getItemCount(): Int {

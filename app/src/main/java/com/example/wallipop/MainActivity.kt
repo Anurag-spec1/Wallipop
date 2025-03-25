@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.wallipop.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 import retrofit2.Call
 import retrofit2.Callback
@@ -69,12 +70,13 @@ import retrofit2.Response
 //}
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var firebaseAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+firebaseAuth= FirebaseAuth.getInstance()
 
         binding.bottomNavigationView.add(
             CurvedBottomNavigation.Model(1,"Home", R.drawable.baseline_add_home_24)
@@ -89,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnClickMenuListener {
             when(it.id){
                 1 -> changeFragment(HomeFragment())
-                2 ->changeFragment(PersonalFragment())
+                2 -> changeFragment(PersonalFragment())
                 3-> changeFragment(Favorite())
             }
             true
@@ -103,7 +105,16 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
     }
-
+    override fun onStart() {
+        super.onStart()
+        val user = firebaseAuth.currentUser
+        if (user == null) {
+            val intent = Intent(this, Login::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
+    }
     override fun onBackPressed() {
         finishAffinity()
     }

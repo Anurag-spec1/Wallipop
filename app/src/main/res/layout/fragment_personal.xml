@@ -15,8 +15,10 @@
     <carbon.widget.ImageView
         android:id="@+id/pickImageButton"
         android:layout_width="65dp"
-        app:carbon_tint="@color/white"
         android:layout_height="65dp"
+        app:carbon_elevation="50dp"
+        app:carbon_tint="@color/carbon_orange_a400"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="30dp"
         android:src="@drawable/folder" />

@@ -9,19 +9,19 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import carbon.widget.Button
 import com.bumptech.glide.Glide
 
-class MediaAdapter(private val context: Context,private val mediaList: List<Uri>) : RecyclerView.Adapter<MediaAdapter.MediaViewHolder>() {
+class MediaAdapter(private val context: Context,private val mediaList: MutableList<Uri>) : RecyclerView.Adapter<MediaAdapter.MediaViewHolder>() {
 
     class MediaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
-        val Button: Button = itemView.findViewById(R.id.Button)
+        val Button: Button= itemView.findViewById(R.id.Button)
     }
 
 
@@ -54,6 +54,9 @@ class MediaAdapter(private val context: Context,private val mediaList: List<Uri>
                 .show()
         }
 
+
+
+
     }
 
     override fun getItemCount(): Int = mediaList.size
@@ -74,5 +77,6 @@ class MediaAdapter(private val context: Context,private val mediaList: List<Uri>
             Toast.makeText(context, "Failed to set wallpaper", Toast.LENGTH_SHORT).show()
         }
     }
+
 }
 

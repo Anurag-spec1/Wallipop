@@ -9,12 +9,6 @@
     android:background="#3A3A3F"
     tools:context=".Favorite">
 
-<!--    <ProgressBar-->
-<!--        android:id="@+id/progressBar"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--       android:layout_gravity="center"-->
-<!--        android:indeterminate="true"/>-->
 
     <carbon.widget.ProgressBar
         android:layout_width="50dp"

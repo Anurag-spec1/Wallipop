@@ -19,8 +19,11 @@
         android:theme="@style/Theme.Wallipop"
         tools:targetApi="31">
         <activity
+            android:name=".favoriteshow"
+            android:exported="false" />
+        <activity
             android:name=".Splashscreen"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,9 +35,7 @@
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="false"/>
-
-
+            android:exported="false" />
         <activity
             android:name=".Signup_in"
             android:exported="false" />

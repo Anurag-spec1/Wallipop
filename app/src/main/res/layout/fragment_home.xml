@@ -3,158 +3,109 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3A3A3F"
-    android:orientation="vertical">
+    android:background="#1E1E1E"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-
+    <!-- Header -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:paddingBottom="10dp">
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:text="WallPapers"
             android:textColor="#00FFE2"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true" />
 
         <carbon.widget.ImageView
             android:id="@+id/sign_out"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_centerVertical="true"
             android:src="@drawable/logout_new"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="6dp"
             app:carbon_tint="#4300FB" />
-
     </RelativeLayout>
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/ShimmerFrameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:shimmer_duration="800">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:shimmer_duration="1000">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
-                <include
-                    layout="@layout/shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <include
-                    layout="@layout/shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <include
-                    layout="@layout/shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
+                <include layout="@layout/shimmer" android:layout_weight="1" />
+                <include layout="@layout/shimmer" android:layout_weight="1" />
+                <include layout="@layout/shimmer" android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
-                <include
-                    layout="@layout/shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <include
-                    layout="@layout/shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <include
-                    layout="@layout/shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
+                <include layout="@layout/shimmer" android:layout_weight="1" />
+                <include layout="@layout/shimmer" android:layout_weight="1" />
+                <include layout="@layout/shimmer" android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
-                <include
-                    layout="@layout/shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <include
-                    layout="@layout/shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <include
-                    layout="@layout/shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
+                <include layout="@layout/shimmer" android:layout_weight="1" />
+                <include layout="@layout/shimmer" android:layout_weight="1" />
+                <include layout="@layout/shimmer" android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
-                <include
-                    layout="@layout/shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <include
-                    layout="@layout/shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <include
-                    layout="@layout/shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
+                <include layout="@layout/shimmer" android:layout_weight="1" />
+                <include layout="@layout/shimmer" android:layout_weight="1" />
+                <include layout="@layout/shimmer" android:layout_weight="1" />
             </LinearLayout>
 
         </LinearLayout>
-
     </com.facebook.shimmer.ShimmerFrameLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:paddingTop="8dp"
+        android:clipToPadding="false"
+        android:layout_marginBottom="8dp" />
 
 </LinearLayout>
-

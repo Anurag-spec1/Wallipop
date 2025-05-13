@@ -20,54 +20,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-//class MainActivity : AppCompatActivity() {
-//
-//    private lateinit var viewPager2: ViewPager2
-//    private lateinit var bottomNavigationView: BottomNavigationView
-//    private lateinit var adapter: myViewAdapter
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-//
-//        // Initialize the ViewPager2 and BottomNavigationView
-//        viewPager2 = findViewById(R.id.viewPager)
-//        bottomNavigationView = findViewById(R.id.bottomNavigationView)
-//
-//        // Set up the adapter with fragments
-//        adapter = myViewAdapter(supportFragmentManager,lifecycle)
-//        viewPager2.adapter = adapter
-//
-//
-//
-//
-//
-//
-//        // BottomNavigationView listener to change ViewPager2 page
-//        bottomNavigationView.setOnNavigationItemSelectedListener {
-//            when (it.itemId) {
-//                R.id.Home -> viewPager2.currentItem = 0
-//                R.id.Collection -> viewPager2.currentItem = 1
-//            }
-//            true
-//        }
-//
-//        // Automatically sync BottomNavigationView when ViewPager2 page changes
-//        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//            override fun onPageSelected(position: Int) {
-//                bottomNavigationView.selectedItemId = when (position) {
-//                    0 -> R.id.Home
-//                    1 -> R.id.Collection
-//                    else -> throw IllegalArgumentException("Unknown position")
-//                }
-//            }
-//        })
-//    }
-//
-//    override fun onBackPressed() {
-//        finishAffinity()
-//    }
-//}
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var firebaseAuth: FirebaseAuth

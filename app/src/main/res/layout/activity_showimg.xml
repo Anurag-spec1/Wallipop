@@ -8,65 +8,63 @@
     tools:context=".showimg">
 
     <ImageView
+        android:id="@+id/showimg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:id="@+id/showimg"/>
+        android:scaleType="centerCrop" />
 
     <androidx.viewpager2.widget.ViewPager2
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+        android:layout_height="match_parent" />
 
     <carbon.widget.TextView
+        android:id="@+id/setaswp"
         android:layout_width="140dp"
         android:layout_height="50dp"
-        app:carbon_cornerRadius="10dp"
-        android:background="#FFB400"
-        app:carbon_elevation="10dp"
-        app:carbon_elevationShadowColor="@color/background_color"
-        android:text="Set As"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:fontFamily="@font/main_font"
-        android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="80dp"
-        android:id="@+id/setaswp"/>
+        android:background="#FFB400"
+        android:fontFamily="@font/main_font"
+        android:gravity="center"
+        android:text="Set As"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:carbon_cornerRadius="10dp"
+        app:carbon_elevation="10dp"
+        app:carbon_elevationShadowColor="@color/background_color" />
 
     <carbon.widget.ImageView
+        android:id="@+id/favourite"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
         android:layout_toEndOf="@id/setaswp"
+        android:layout_marginStart="60dp"
         android:src="@drawable/favourite"
-        app:carbon_tint="@color/white"
         android:clickable="true"
         android:focusable="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="80dp"
-        android:layout_marginStart="60dp"
-        android:id="@+id/favourite"/>
+        app:carbon_tint="@color/white" />
 
     <ImageView
+        android:id="@+id/downld"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_toStartOf="@id/setaswp"
-        android:src="@drawable/downld"
-        app:carbon_tint="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="80dp"
+        android:layout_toStartOf="@id/setaswp"
         android:layout_marginEnd="60dp"
-        android:id="@+id/downld"/>
+        android:src="@drawable/downld"
+        app:carbon_tint="@color/white" />
 
-   <carbon.widget.ProgressBar
-       android:layout_width="50dp"
-       android:layout_height="50dp"
-       android:layout_centerInParent="true"
-       android:indeterminate="false"
-       android:visibility="gone"
-       android:id="@+id/progressbar2"
-       app:carbon_progressStyle="bar_query"/>
+    <carbon.widget.ProgressBar
+        android:id="@+id/progressbar2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:indeterminate="false"
+        android:visibility="gone"
+        app:carbon_progressStyle="bar_query" />
 </RelativeLayout>

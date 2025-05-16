@@ -1,6 +1,6 @@
 🖼️ Wallipop - Wallpaper App
 
-Wallipop is a beautiful and smooth Android wallpaper app built with Kotlin, Firebase, and XML layouts. Browse, preview, and set high-quality wallpapers with just a tap.
+>Wallipop is a beautiful and smooth Android wallpaper app built with Kotlin, Firebase, and XML layouts. Browse, preview, and set high-quality wallpapers with just a tap.
 
 🚀 Features
 

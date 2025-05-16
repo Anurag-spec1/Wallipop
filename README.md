@@ -4,11 +4,11 @@
 
 🚀 Features
 
->🎨 Explore trending and latest wallpapers
->❤️ Favorite wallpapers for later
->🔄 Daily wallpaper updates 
->⬇️ Download or apply wallpaper directly
->🔥 Lightweight and fast
+>🎨 Explore trending and latest wallpapers                                                                                                                                                                               
+>❤️ Favorite wallpapers for later                                                                                                                                                                                        
+>🔄 Daily wallpaper updates                                                                                                                                                                                              
+>⬇️ Download or apply wallpaper directly                                                                                                                                                                                 
+>🔥 Lightweight and fast                                                                                                                                                                                                 
 
 🛠️ Tech Stack
 

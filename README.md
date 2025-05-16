@@ -4,14 +4,20 @@
 
 🚀 Features
 
-🎨 Explore trending and latest wallpapers
+>🎨 Explore trending and latest wallpapers
+>❤️ Favorite wallpapers for later
+>🔄 Daily wallpaper updates 
+>⬇️ Download or apply wallpaper directly
+>🔥 Lightweight and fast
 
-❤️ Favorite wallpapers for later
+🛠️ Tech Stack
 
-🔄 Daily wallpaper updates 
+>Language: Kotlin
+>UI: XML Layouts
+>Backend: Firebase (Firestore, Storage)
+>Image Loading: Glide / Picasso
+>Other Libraries: Material Components, Firebase UI
 
-⬇️ Download or apply wallpaper directly
-
-🔥 Lightweight and fast
+📸 Screenshots
 
 ![Wallipop - The wallpaper app](https://github.com/user-attachments/assets/fa8135c0-3442-43c8-a681-fb1970d0ad47)

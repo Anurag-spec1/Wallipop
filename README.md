@@ -12,11 +12,11 @@
 
 🛠️ Tech Stack
 
->Language: Kotlin
->UI: XML Layouts
->Backend: Firebase (Firestore, Storage)
->Image Loading: Glide / Picasso
->Other Libraries: Material Components, Firebase UI
+>Language: Kotlin                                                                                                                                                                                                         
+>UI: XML Layouts                                                                                                                                                                                                          
+>Backend: Firebase (Firestore, Storage)                                                                                                                                                                                   
+>Image Loading: Glide / Picasso                                                                                                                                                                                           
+>Other Libraries: Material Components, Firebase UI                                                                                                                                                                        
 
 📸 Screenshots
 

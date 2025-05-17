@@ -23,4 +23,5 @@
 
 📸 Screenshots
 
-![Wallipop - The wallpaper app](https://github.com/user-attachments/assets/fa8135c0-3442-43c8-a681-fb1970d0ad47)
+![Wallipop - The wallpaper app(1)](https://github.com/user-attachments/assets/6204878c-ee57-4a66-aacb-535e6117f6fd)
+

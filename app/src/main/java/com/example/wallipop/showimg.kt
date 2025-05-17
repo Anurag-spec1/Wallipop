@@ -71,6 +71,7 @@ class showimg : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 currentPosition = position
+                fav.setColorFilter(ContextCompat.getColor(this@showimg, R.color.white))
             }
         })
 

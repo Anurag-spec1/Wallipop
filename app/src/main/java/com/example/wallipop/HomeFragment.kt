@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -23,59 +24,64 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-
-
 class HomeFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var shimmer: ShimmerFrameLayout
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var searchView: SearchView
     private lateinit var imageAdapter: ImageAdapter
-    private lateinit var signOutButton: ImageView
 
     private val imageList = mutableListOf<ListOfPhotosItem>()
     private var currentPage = 1
     private var isLoading = false
     private var isLastPage = false
+    private var currentQuery: String? = null
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        firebaseAuth = FirebaseAuth.getInstance()
-        sharedPreferences = requireContext().getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)  //requirecontext() means agar fragment se attch koi activity na ho to exception through kr dega
-
-        signOutButton = view.findViewById(R.id.sign_out)
         shimmer = view.findViewById(R.id.ShimmerFrameLayout)
         recyclerView = view.findViewById(R.id.recycle)
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        searchView = view.findViewById(R.id.searchView)
 
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         imageAdapter = ImageAdapter(requireContext(), imageList)
         recyclerView.adapter = imageAdapter
 
-        signOutButton.setOnClickListener {
-            signOutUser()
-        }
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                currentQuery = query
+                currentPage = 1
+                isLastPage = false
+                imageList.clear()
+                imageAdapter.notifyDataSetChanged()
+                if (query != null && query.isNotEmpty()) {
+                    searchImages(query)
+                } else {
+                    getImages()
+                }
+                return true
+            }
 
+            override fun onQueryTextChange(newText: String?) = false
+        })
 
-        // Fetch initial images
         getImages()
 
-        // Add scroll listener for pagination
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                val layoutManager = recyclerView.layoutManager as GridLayoutManager
+            override fun onScrolled(rv: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(rv, dx, dy)
+                val layoutManager = rv.layoutManager as GridLayoutManager
                 val totalItemCount = layoutManager.itemCount
                 val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
-
-                // Trigger loading when 5 items away from the end
-                if (!isLoading && !isLastPage && totalItemCount <= (lastVisibleItem + 5)) {
-                    loadMoreImages()
+                if (!isLoading && !isLastPage && totalItemCount <= lastVisibleItem + 5) {
+                    if (currentQuery != null) {
+                        searchImages(currentQuery!!)
+                    } else {
+                        getImages()
+                    }
                 }
             }
         })
@@ -84,100 +90,62 @@ class HomeFragment : Fragment() {
     }
 
     private fun getImages() {
-        if (isLoading || isLastPage) return
-
+        isLoading = true
         shimmer.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
-        isLoading = true
 
-        val call = ImageService.imageInstance.getPhotos(currentPage, "8sYNuHtHI6Cqb9cUmRdhGaCnc6JLfy8gC9o5gROY-P0")
-        call.enqueue(object : Callback<List<ListOfPhotosItem>> {
-            override fun onResponse(
-                call: Call<List<ListOfPhotosItem>>,
-                response: Response<List<ListOfPhotosItem>>
-            ) {
-                isLoading = false
+        ImageService.imageInstance.getPhotos(currentPage).enqueue(object : Callback<List<ListOfPhotosItem>> {
+            override fun onResponse(call: Call<List<ListOfPhotosItem>>, response: Response<List<ListOfPhotosItem>>) {
                 shimmer.visibility = View.GONE
                 recyclerView.visibility = View.VISIBLE
+                isLoading = false
 
-                if (response.isSuccessful) {
-                    val photos = response.body()
-                    if (!photos.isNullOrEmpty()) {
-                        imageList.addAll(photos)
-                        imageAdapter.notifyItemRangeInserted(imageList.size - photos.size, photos.size)
-
-                        // If fewer items are returned than expected, mark as last page
-                        if (photos.size < 10) {
-                            isLastPage = true
-                        }
-                    } else {
-                        isLastPage = true
-                    }
-                } else {
-                    Toast.makeText(requireContext(), "Failed to load images: ${response.message()}", Toast.LENGTH_SHORT).show()
+                response.body()?.let {
+                    imageList.addAll(it)
+                    imageAdapter.notifyDataSetChanged()
+                    if (it.size < 10) isLastPage = true
+                    currentPage++
                 }
             }
 
             override fun onFailure(call: Call<List<ListOfPhotosItem>>, t: Throwable) {
-                isLoading = false
                 shimmer.visibility = View.GONE
                 recyclerView.visibility = View.VISIBLE
-                Log.e("HomeFragment", "Error fetching images", t)
+                isLoading = false
                 Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
-    private fun loadMoreImages() {
-        if (isLastPage || isLoading) return
-
-        currentPage++ // Increment the page
+    private fun searchImages(query: String) {
         isLoading = true
+        shimmer.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
 
-        val call = ImageService.imageInstance.getPhotos(currentPage, "8sYNuHtHI6Cqb9cUmRdhGaCnc6JLfy8gC9o5gROY-P0")
-        call.enqueue(object : Callback<List<ListOfPhotosItem>> {
-            override fun onResponse(
-                call: Call<List<ListOfPhotosItem>>,
-                response: Response<List<ListOfPhotosItem>>
-            ) {
+        ImageService.imageInstance.searchPhotos(query, currentPage).enqueue(object : Callback<SearchResponse> {
+            override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
+                shimmer.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
                 isLoading = false
 
-                if (response.isSuccessful) {
-                    val photos = response.body()
-                    if (!photos.isNullOrEmpty()) {
-                        imageList.addAll(photos)
-                        imageAdapter.notifyItemRangeInserted(imageList.size - photos.size, photos.size)
-
-                        // Mark as last page if fewer items are returned
-                        if (photos.size < 10) {
-                            isLastPage = true
-                        }
-                    } else {
-                        isLastPage = true
-                    }
-                } else {
-                    Toast.makeText(requireContext(), "Failed to load more images: ${response.message()}", Toast.LENGTH_SHORT).show()
+                response.body()?.results?.let {
+                    imageList.addAll(it)
+                    imageAdapter.notifyDataSetChanged()
+                    if (it.size < 10) isLastPage = true
+                    currentPage++
                 }
             }
 
-            override fun onFailure(call: Call<List<ListOfPhotosItem>>, t: Throwable) {
+            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+                shimmer.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
                 isLoading = false
-                Log.e("HomeFragment", "Error loading more images", t)
-                Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Search error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
-    }
-
-    private fun signOutUser() {
-        firebaseAuth.signOut()
-        sharedPreferences.edit().putBoolean("learn", false).apply()
-
-        val intent = Intent(requireContext(), Login::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-            requireActivity().finishAffinity()
     }
 }
+
 
 
 

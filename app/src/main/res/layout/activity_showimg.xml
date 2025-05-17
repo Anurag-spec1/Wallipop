@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1E1E1E"
     tools:context=".showimg">
 
     <ImageView
@@ -24,8 +25,8 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp"
-        android:background="#FFB400"
+        android:layout_marginBottom="60dp"
+        android:background="#FFA000"
         android:fontFamily="@font/main_font"
         android:gravity="center"
         android:text="Set As"
@@ -33,14 +34,14 @@
         android:textSize="30sp"
         app:carbon_cornerRadius="10dp"
         app:carbon_elevation="10dp"
-        app:carbon_elevationShadowColor="@color/background_color" />
+        app:carbon_elevationShadowColor="@color/white" />
 
     <carbon.widget.ImageView
         android:id="@+id/favourite"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="60dp"
         android:layout_toEndOf="@id/setaswp"
         android:layout_marginStart="60dp"
         android:src="@drawable/favourite"
@@ -53,11 +54,11 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="60dp"
         android:layout_toStartOf="@id/setaswp"
         android:layout_marginEnd="60dp"
         android:src="@drawable/downld"
-        app:carbon_tint="@color/white" />
+        android:tint="@color/white"/>
 
     <carbon.widget.ProgressBar
         android:id="@+id/progressbar2"

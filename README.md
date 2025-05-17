@@ -6,7 +6,10 @@
 
 >🎨 Explore trending and latest wallpapers                                                                                                                                                                               
 >❤️ Favorite wallpapers for later                                                                                                                                                                                        
->🔄 Daily wallpaper updates                                                                                                                                                                                              
+>🔄 Daily wallpaper updates
+
+>🔍User can search wallpapers according to their category                                                                                                                                                        
+
 >⬇️ Download or apply wallpaper directly                                                                                                                                                                                 
 >🔥 Lightweight and fast                                                                                                                                                                                                 
 
